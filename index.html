@@ -42,7 +42,7 @@
       <nav
         class="navbar navbar-dark navbar-expand bg-dark text-light no-select"
       >
-        <div>
+        <div class="col-1">
           <a class="navbar-brand ms-3" href="#">
             <img
               src="https://codeworks.blob.core.windows.net/public/assets/img/cw-mark.png"
@@ -54,45 +54,35 @@
           </a>
         </div>
         <!--  -->
-        <div>
-          <form class="d-flex">
+        <div class="col-6">
+          <form class="d-flex" onsubmit="app.tasksController.createTask()">
             <div class="col-auto d-flex">
-              <label class="visually-hidden" for="autoSizingInputGroup"
-                >Username</label
-              >
+              <label class="visually-hidden" for="name">Username</label>
               <div class="input-group">
                 <input
+                  name="name"
                   type="text"
                   class="form-control"
                   id="autoSizingInputGroup"
-                  placeholder="Username"
+                  placeholder="add a task here"
+                  required
                 />
               </div>
             </div>
-            <div class="col-2 d-flex align-items-center justify-content-center m-2">
-              <label for="exampleColorInput" class="form-label"></label>
+            <div class="d-flex align-items-center justify-content-center mx-2">
+              <label for="color" class="form-label"></label>
               <input
                 type="color"
+                name="color"
                 class="form-control form-control-color"
-                id="exampleColorInput"
-                value="1567"
+                id="ColorInput"
+                value="#f00000"
                 title="Choose your color"
               />
-              <!-- <label class="visually-hidden" for="autoSizingSelect"
-                >Preference</label
-              >
-              <select class="form-select" id="autoSizingSelect">
-                <option selected>Color...</option>
-                <option value="1">One</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
-                <option value="4">Four</option>
-                <option value="5">Five</option>
-              </select> -->
             </div>
             <div>
               <button class="btn btn-warning btn-lg" type="submit">
-                Button
+                Add Task
               </button>
             </div>
           </form>
@@ -103,7 +93,7 @@
     <!-- STUB start of main -->
     <main>
       <div class="container-fluid">
-        <div class="row mt-4 flex-wrap justify-content-evenly">
+        <div class="row mt-4 flex-wrap justify-content-evenly" id="tasks">
           <!-- <div class="col-md-3 my-3 mx-md-5">
             <div class="card">
               <div class="card-header bg-primary text-light fs-4 fw-bold d-flex justify-content-between">
@@ -111,44 +101,25 @@
                 <i class="mdi mdi-delete-forever"></i>
               </div>
               <ul class="list-group">
-                <li class="list-group-item">
+               <li class="list-group-item d-flex justify-content-between">
                   <input
                     class="form-check-input me-1"
                     type="checkbox"
                     value=""
-                    id="firstCheckboxStretched"
                   />
-                  <label
-                    class="form-check-label stretched-link"
-                    for="firstCheckboxStretched"
-                    >First checkbox</label
-                  >
-                </li>
-                <li class="list-group-item">
                   <input
                     class="form-check-input me-1"
                     type="checkbox"
                     value=""
-                    id="secondCheckboxStretched"
+                    id="listItem"
+                    name="name"
                   />
                   <label
                     class="form-check-label stretched-link"
-                    for="secondCheckboxStretched"
-                    >Second checkbox</label
+                    for="name"
+                    >${this.name}</label
                   >
-                </li>
-                <li class="list-group-item">
-                  <input
-                    class="form-check-input me-1"
-                    type="checkbox"
-                    value=""
-                    id="thirdCheckboxStretched"
-                  />
-                  <label
-                    class="form-check-label stretched-link"
-                    for="thirdCheckboxStretched"
-                    >Third checkbox</label
-                  >
+                  <i class="mdi mdi-delete-forever" onclick="app.listController.removeList('${this.id}')"></i>
                 </li>
               </ul>
 
@@ -162,6 +133,7 @@
               </div>
             </div>
           </div> -->
+          <!--  -->
         </div>
       </div>
     </main>

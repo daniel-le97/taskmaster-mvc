@@ -1,64 +1,50 @@
-export class Task{
+import { generateId } from "../Utils/generateId.js";
+import { appState } from "../AppState.js";
 
-  constructor(data){
-  
-
+export class Task {
+  constructor(data) {
+    this.name = data.name;
+    this.color = data.color;
+    this.id = data.id || generateId();
   }
 
-  get Template(){
-    return `
+  get Checked() {
+    let checked = appState.lists.filter((checked) => checked.checked == true);
+    return checked;
+  }
+
+  get ListTemplate() {
+    let template = "";
+    this.Lists.forEach((list) => (template += list.Template));
+    return template;
+  }
+  get Lists() {
+    let list = appState.lists.filter((list) => list.taskId == this.id);
+    return list;
+  }
+
+  get Template() {
+    return /*html*/ `
 
     <div class="col-md-3 my-3 mx-md-5">
-            <div class="card">
-              <div class="card-header bg-primary text-light fs-4 fw-bold d-flex justify-content-between">
-                <span>Placeholder task name</span>
-                <i class="mdi mdi-delete-forever"></i>
+            <div class="card elevation-5">
+              <div class="card-header fs-4 fw-bold d-flex justify-content-between"
+              style="background-color:${this.color}"
+              >
+                <span>${this.name}</span>
+                <div class="d-flex fs-6 align-items-center">
+                <span>${this.Checked.length}</span>
+                <span>/</span>
+                <span>${this.Lists.length}</span>
+                </div>
+                <i class="mdi mdi-delete-forever" onclick="app.tasksController.removeTask('${this.id}')"></i>
               </div>
-              <ul class="list-group">
-                <li class="list-group-item">
-                  <input
-                    class="form-check-input me-1"
-                    type="checkbox"
-                    value=""
-                    id="firstCheckboxStretched"
-                  />
-                  <label
-                    class="form-check-label stretched-link"
-                    for="firstCheckboxStretched"
-                    >First checkbox</label
-                  >
-                </li>
-                <li class="list-group-item">
-                  <input
-                    class="form-check-input me-1"
-                    type="checkbox"
-                    value=""
-                    id="secondCheckboxStretched"
-                  />
-                  <label
-                    class="form-check-label stretched-link"
-                    for="secondCheckboxStretched"
-                    >Second checkbox</label
-                  >
-                </li>
-                <li class="list-group-item">
-                  <input
-                    class="form-check-input me-1"
-                    type="checkbox"
-                    value=""
-                    id="thirdCheckboxStretched"
-                  />
-                  <label
-                    class="form-check-label stretched-link"
-                    for="thirdCheckboxStretched"
-                    >Third checkbox</label
-                  >
-                </li>
+              <ul class="list-group" id="lists">
+              ${this.ListTemplate}
               </ul>
-
-              <div class="bg-primary">
-                <form class="m-2 d-flex justify-content-center gap-3">
-                  <input type="text" name="" id="" class="rounded" />
+              <div style="background-color:${this.color}">
+                <form class="m-2 d-flex justify-content-center gap-3" onsubmit="app.listsController.createList('${this.id}')">
+                  <input type="text" name="name" id="" class="rounded" required />
                   <button class="btn btn-warning" type="submit">
                     add task
                   </button>
