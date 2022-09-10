@@ -10,7 +10,10 @@ export class Task {
 
   get Checked() {
     let checked = appState.lists.filter((checked) => checked.checked == true);
-    return checked;
+    let checkNumber = checked.filter(
+      (checkNumber) => checkNumber.taskId == this.id
+    );
+    return checkNumber;
   }
 
   get ListTemplate() {
@@ -26,7 +29,7 @@ export class Task {
   get Template() {
     return /*html*/ `
 
-    <div class="col-md-3 my-3 mx-md-5">
+    <div class="col-md-3 my-3 mx-md-5 " id="card">
             <div class="card elevation-5">
               <div class="card-header fs-4 fw-bold d-flex justify-content-between"
               style="background-color:${this.color}"

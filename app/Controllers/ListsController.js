@@ -2,6 +2,7 @@ import { listsService } from "../Services/ListsService.js";
 import { getFormData } from "../Utils/FormHandler.js";
 import { Pop } from "../Utils/Pop.js";
 
+
 export class ListsController {
   constructor() {
     console.log("hello from lists controller");
@@ -24,6 +25,7 @@ export class ListsController {
     if (Pop.confirm("are you sure")) {
       listsService.removeList(listId);
     }
+    
   }
 
   toggleChecked(id) {

@@ -16,12 +16,9 @@ export class List {
                     type="checkbox"
                     onchange="app.listsController.toggleChecked('${this.id}')"
                     ${this.checked ? "checked" : ""}
-
-                 
                     id="listItem"
-                 
                   />
-                 <span>${this.name}</span>
+                <span>${this.name}</span>
                   <i class="mdi mdi-delete-forever" onclick="app.listsController.removeList('${
                     this.id
                   }')"></i>
