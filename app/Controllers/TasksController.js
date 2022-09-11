@@ -30,8 +30,6 @@ export class TasksController {
   }
   removeTask(id) {
     if (window.confirm("are you done with these tasks?")) {
-      // document.getElementById("card").classList.remove("animate__fadeInDown");
-      document.getElementById("card").classList.add("animate__backOutDown");
       tasksService.removeTask(id);
     }
   }

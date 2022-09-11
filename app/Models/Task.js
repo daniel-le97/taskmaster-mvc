@@ -40,15 +40,24 @@ export class Task {
                 <span>/</span>
                 <span>${this.Lists.length}</span>
                 </div>
+                <div>
+               <i class="mdi mdi-format-vertical-align-center" type="button" data-bs-toggle="collapse" data-bs-target="#collapse${this.id}"></i>
                 <i class="mdi mdi-delete-forever" onclick="app.tasksController.removeTask('${this.id}')"></i>
+                </div>
               </div>
+              <div>
+              </div>
+
+              <div class="collapse show" id="collapse${this.id}" aria-expanded="true">
               <ul class="list-group" id="lists">
               ${this.ListTemplate}
               </ul>
+              </div>
+
               <div style="background-color:${this.color}">
                 <form class="m-2 d-flex justify-content-center gap-3" onsubmit="app.listsController.createList('${this.id}')">
-                  <input type="text" name="name" id="" class="rounded" required />
-                  <button class="btn btn-warning" type="submit">
+                  <input type="text" name="name" id="" class="rounded" required minlength="3" maxlength="15" />
+                  <button class="btn btn-primary border elevation-1" type="submit">
                     add task
                   </button>
                 </form>
