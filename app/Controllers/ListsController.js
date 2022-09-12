@@ -20,8 +20,8 @@ export class ListsController {
       console.log("error from list controller");
     }
   }
-  removeList(listId) {
-    if (window.confirm("are you done with this?")) {
+  async removeList(listId) {
+    if (await Pop.confirm("have you done this?")) {
       listsService.removeList(listId);
     }
   }
